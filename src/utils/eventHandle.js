@@ -1,0 +1,25 @@
+// 对事件进行封装
+import EventEmitter from 'events'
+
+class EventHandle extends EventEmitter {
+    init(handler) {
+        this.handler = handler
+        this.handler.on("selection:created", (e) => this._selected(e))
+        this.handler.on("selection:updated", (e) => this._selected(e))
+        this.handler.on("selection:cleared", (e) => this._selected(e))
+    }
+    // 暴露多选事件
+    _selected(e) {
+        const actives = this.handler.getActiveObjects()
+        if (actives && actives.length === 1) {
+            this.emit('selectOne', actives)
+        } else if (actives && actives.length > 1) {
+            this.mSelectMode = 'multiple'
+            this.emit('selectMultiple', actives)
+        } else {
+            this.emit('selectCancel')
+        }
+    }
+}
+
+export default EventHandle
