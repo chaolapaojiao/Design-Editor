@@ -239,11 +239,10 @@ export default {
         let item = this.fabric.util.groupSVGElements(objects, {
           ...options,
           ...defaultPosition,
-          width: 500,
-          height: 500,
           id: uuid(),
           name: "svg元素",
         });
+        item.scale(0.1);
         this.canvas.c.add(item);
         this.canvas.c.renderAll();
       });
