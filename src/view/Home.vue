@@ -38,7 +38,7 @@
     <main>
       <el-row>
         <!-- 设计区域 -->
-        <el-col :span="5" class="block1">
+        <el-col :span="4.5" class="block1">
           <design></design>
         </el-col>
         <!-- 画板区域 -->
@@ -46,7 +46,7 @@
           <canvas id="canvas" width="450" height="600"></canvas>
         </el-col>
         <!-- 属性区域 -->
-        <el-col :span="4">3</el-col>
+        <el-col :span="4.5">3</el-col>
       </el-row>
     </main>
   </div>

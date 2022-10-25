@@ -16,17 +16,17 @@ export default {
 .title {
   display: flex;
   font-size: 14px;
-  color: rgb(40, 38, 38);
+  color: rgb(127, 119, 119);
   height: 20px;
   line-height: 20px;
-  margin: 10px 5px;
+  margin: 14px 5px;
   span {
     margin-left: 6px;
   }
   :last-child,
   :first-child {
     width: 10px;
-    height: 1px;
+    height: 2px;
     margin-top: 9px;
     background-color: #ccc;
   }

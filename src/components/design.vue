@@ -14,27 +14,33 @@
           >
         </el-menu>
       </el-aside>
-      <el-main>
+      <div class="el-main">
         <!-- 生成模板 -->
         <div class="item templ" v-show="index === 1">
-          <templa></templa>
+          <importTemp></importTemp>
         </div>
         <!-- 常用元素 -->
-        <div class="item element" v-show="index === 2"></div>
+        <div class="item element" v-show="index === 2">
+          <importEle></importEle>
+        </div>
         <!-- 背景 -->
-        <div class="item background" v-show="index === 3"></div>
-      </el-main>
+        <div class="item background" v-show="index === 3">
+          <importBg></importBg>
+        </div>
+      </div>
     </el-container>
   </div>
 </template>
 
 <script>
-import templa from "@/components/templa";
+import importTemp from "@/components/importTemp";
+import importEle from "@/components/importEle";
+import importBg from "@/components/importBg";
 export default {
-  components: { templa },
+  components: { importTemp, importEle, importBg },
   data() {
     return {
-      index: 1,
+      index: 2,
     };
   },
   methods: {
@@ -46,6 +52,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.nav {
+  width: 100%;
+}
 .el-aside {
   .el-menu {
     height: 745px;
@@ -61,6 +70,8 @@ export default {
   }
 }
 .el-main {
+  width: 211px;
+  height: 745px;
   padding: 8px;
 }
 </style>

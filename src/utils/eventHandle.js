@@ -2,6 +2,7 @@
 import EventEmitter from 'events'
 
 class EventHandle extends EventEmitter {
+    // 初始化绑定事件
     init(handler) {
         this.handler = handler
         this.handler.on("selection:created", (e) => this._selected(e))
