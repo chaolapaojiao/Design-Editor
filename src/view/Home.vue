@@ -98,6 +98,7 @@ export default {
   provide: { canvas, event, fabric },
   mounted() {
     this.canvas = canvas.c = new fabric.Canvas("canvas");
+    this.canvas.set("backgroundColor", "#fff");
     event.init(canvas.c);
   },
 };

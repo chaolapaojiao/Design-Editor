@@ -1,11 +1,20 @@
 <template>
   <div class="clear">
-    <el-button>清除</el-button>
+    <el-button @click="clear">清除</el-button>
   </div>
 </template>
 
 <script>
-export default {};
+import select from "@/mixins/select";
+export default {
+  mixins: [select],
+  methods: {
+    // 清空画板
+    clear() {
+      this.canvas.c.clear();
+    },
+  },
+};
 </script>
 
 <style>

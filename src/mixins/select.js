@@ -55,9 +55,9 @@ export default {
         // 复制
         _mixinClipboard(clipboardText) {
             this.$copyText(clipboardText).then(() => {
-                console.log('复制成功')
+                this.$message('复制成功');
             }, () => {
-                console.log('复制失败')
+                this.$message('复制失败');
             })
         },
 
