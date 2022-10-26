@@ -10,6 +10,7 @@ export default {
         }
     },
     created() {
+        // 给event实例改在选择事件
         this.event.on('selectOne', (e) => {
             this.mSelectMode = 'one'
             this.mSelectId = e[0].id
@@ -54,9 +55,9 @@ export default {
         // 复制
         _mixinClipboard(clipboardText) {
             this.$copyText(clipboardText).then(() => {
-                this.$Message.success('复制成功')
+                console.log('复制成功')
             }, () => {
-                this.$Message.error('复制失败')
+                console.log('复制失败')
             })
         },
 

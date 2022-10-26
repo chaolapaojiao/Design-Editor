@@ -98,6 +98,7 @@ export default {
   provide: { canvas, event, fabric },
   mounted() {
     this.canvas = canvas.c = new fabric.Canvas("canvas");
+    event.init(canvas.c);
   },
 };
 </script>

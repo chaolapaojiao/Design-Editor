@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block" class="group">
-    <el-button size="mini"
+    <el-button size="mini" :disabled="isSelsectMuti()" @click="toGroup()"
       ><svg
         t="1650848913991"
         class="icon"
@@ -16,7 +16,7 @@
           p-id="17132"
         ></path></svg
     ></el-button>
-    <el-button size="mini"
+    <el-button size="mini" :disabled="isSelectGroup()" @click="unGroup()"
       ><svg
         t="1650848938557"
         class="icon"
@@ -36,7 +36,32 @@
 </template>
 
 <script>
-export default {};
+import select from "@/mixins/select";
+export default {
+  mixins: [select],
+  methods: {
+    // 是否多选
+    isSelsectMuti() {
+      return this.mSelectMode !== "multiple";
+    },
+    // 是否选择组元素
+    isSelectGroup() {
+      return this.mSelectMode !== "one";
+    },
+    // 打散组合
+    unGroup() {
+      // 先获取对象然后打散
+      const activeObject = this.canvas.c.getActiveObject().toActiveSelection();
+      //取消选中
+      this.canvas.c.discardActiveObject().renderAll();
+    },
+    // 组合SVG图片
+    toGroup() {
+      const activeObject = this.canvas.c.getActiveObject();
+      const activeGrounp = activeObject.toGroup();
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -52,6 +77,10 @@ export default {};
   svg {
     opacity: 0.2;
     color: #ccc;
+    &:hover {
+      opacity: 1;
+      fill: black;
+    }
   }
 }
 </style>

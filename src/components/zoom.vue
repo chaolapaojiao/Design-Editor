@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block" class="zoom">
-    <el-button
+    <el-button :disabled="isSelect()" @click="toLarger()"
       ><svg
         t="1650853919128"
         class="icon"
@@ -22,7 +22,7 @@
           p-id="1273"
         ></path></svg
     ></el-button>
-    <el-button
+    <el-button :disabled="isSelect()" @click="toSmall()"
       ><svg
         t="1650853934351"
         class="icon"
@@ -44,12 +44,41 @@
           p-id="1472"
         ></path></svg
     ></el-button>
-    <el-button class="percent">1:1</el-button>
+    <el-button class="percent" @click="toDefault">1:1</el-button>
   </div>
 </template>
 
 <script>
-export default {};
+import select from "@/mixins/select";
+export default {
+  mixins: [select],
+  methods: {
+    // 是否选中图片
+    isSelect() {
+      return this.mSelectMode === "";
+    },
+    // 放大选中的图片
+    toLarger() {
+      const activeObject = this.canvas.c.getActiveObject();
+      activeObject.scaleX += 0.03;
+      activeObject.scaleY += 0.03;
+      this.canvas.c.renderAll();
+    },
+    // 缩小选中的图片
+    toSmall(e) {
+      const activeObject = this.canvas.c.getActiveObject();
+      activeObject.scaleX -= 0.03;
+      activeObject.scaleY -= 0.03;
+      this.canvas.c.renderAll();
+    },
+    // 还原选中的图片
+    toDefault() {
+      const activeObject = this.canvas.c.getActiveObject();
+      activeObject.scale(0.1);
+      this.canvas.c.renderAll();
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -66,6 +95,10 @@ export default {};
   svg {
     opacity: 0.2;
     color: #ccc;
+    &:hover {
+      opacity: 1;
+      fill: black;
+    }
   }
 }
 </style>

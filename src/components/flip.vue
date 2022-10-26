@@ -1,6 +1,7 @@
 <template>
   <div class="flip" style="display: inline-block">
-    <el-button size="mini">
+    <!-- X轴旋转 -->
+    <el-button size="mini" :disabled="isSelectOne()" @click="flip('X')">
       <svg
         t="1650443094178"
         class="icon"
@@ -25,7 +26,8 @@
         ></path>
       </svg>
     </el-button>
-    <el-button size="mini">
+    <!-- Y轴旋转 -->
+    <el-button size="mini" :disabled="isSelectOne()" @click="flip('Y')">
       <svg
         t="1650443104385"
         class="icon"
@@ -54,7 +56,24 @@
 </template>
 
 <script>
-export default {};
+import select from "@/mixins/select";
+export default {
+  mixins: [select],
+  methods: {
+    // 是否只选中了一个
+    isSelectOne() {
+      return this.mSelectMode !== "one";
+    },
+    // 旋转
+    flip(type) {
+      const activeObject = this.canvas.c.getActiveObject();
+      console.log(activeObject.type)
+      activeObject.set("scale" + type, -1).setCoords();
+      activeObject.scale(0.1);
+      this.canvas.c.renderAll();
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -70,6 +89,10 @@ export default {};
   svg {
     opacity: 0.2;
     color: #ccc;
+    &:hover {
+      opacity: 1;
+      fill: black;
+    }
   }
 }
 </style>

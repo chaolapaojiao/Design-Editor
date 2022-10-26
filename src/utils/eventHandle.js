@@ -11,8 +11,10 @@ class EventHandle extends EventEmitter {
     }
     // 暴露多选事件
     _selected(e) {
+        // getActiveObjects()拿到选中的元素
         const actives = this.handler.getActiveObjects()
         if (actives && actives.length === 1) {
+            // 触发选中事件
             this.emit('selectOne', actives)
         } else if (actives && actives.length > 1) {
             this.mSelectMode = 'multiple'
