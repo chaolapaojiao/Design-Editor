@@ -7,7 +7,7 @@
       accept=".svg"
       :on-error="insertSVG"
     >
-      <el-button size="small" type="primary">导入SVG元素</el-button>
+      <el-button size="small" type="primary">导入SVG文件</el-button>
     </el-upload>
   </div>
 </template>

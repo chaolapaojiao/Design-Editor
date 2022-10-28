@@ -46,7 +46,6 @@ export default {
       this.canvas.c.discardActiveObject().renderAll();
       // 修改选中对象的是否可以移动属性
       lockAttrs.forEach((item) => {
-        console.log(this.isLocked);
         activeObject[item] = this.isLocked;
       });
     },

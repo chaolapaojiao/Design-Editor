@@ -212,6 +212,7 @@
 
 <script>
 import { v4 as uuid } from "uuid";
+import select from "@/mixins/select";
 import myTitle from "@/components/myTitle";
 const defaultPosition = {
   left: 100,
@@ -221,7 +222,7 @@ const defaultPosition = {
 };
 export default {
   components: { myTitle },
-  inject: ["canvas", "fabric"],
+  mixins: [select],
   methods: {
     // 获取svg序号
     getIndex(start, end) {
@@ -245,6 +246,10 @@ export default {
         item.scale(0.1);
         this.canvas.c.add(item);
         this.canvas.c.renderAll();
+        this.$nextTick(() => {
+          const data = this.canvas.c.toJSON(["id"]);
+          this.$backList.push(data);
+        });
       });
     },
   },

@@ -46,7 +46,11 @@
           <canvas id="canvas" width="450" height="600"></canvas>
         </el-col>
         <!-- 属性区域 -->
-        <el-col :span="4.5">3</el-col>
+        <el-col :span="4" class="attribute">
+          <historyBack></historyBack>
+          <layer></layer>
+          <attribute></attribute>
+        </el-col>
       </el-row>
     </main>
   </div>
@@ -69,8 +73,10 @@ import delet from "@/components/delete";
 import copy from "@/components/copy";
 import clear from "@/components/clear";
 import save from "@/components/save";
-
 import design from "@/components/design";
+import historyBack from "@/components/historyBack";
+import layer from "@/components/layer";
+import attribute from "@/components/attribute";
 
 import EventHandle from "../utils/eventHandle";
 
@@ -94,6 +100,9 @@ export default {
     clear,
     save,
     design,
+    historyBack,
+    layer,
+    attribute,
   },
   provide: { canvas, event, fabric },
   mounted() {
@@ -134,6 +143,11 @@ main {
     #canvas {
       background-color: #fff;
     }
+  }
+  .attribute {
+    height: 745px;
+    overflow: scroll;
+    padding: 10px 15px;
   }
 }
 </style>

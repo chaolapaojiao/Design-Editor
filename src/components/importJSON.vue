@@ -8,7 +8,7 @@
       :on-error="insertJSON"
       accept=".json"
     >
-      <el-button size="small" type="primary">导入JSON元素</el-button>
+      <el-button size="small" type="primary">导入JSON文件</el-button>
     </el-upload>
   </div>
 </template>

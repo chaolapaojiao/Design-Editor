@@ -13,7 +13,7 @@
         >
         <el-dropdown-item command="saveToImg">保存为图片</el-dropdown-item>
         <el-dropdown-item command="saveToSvg">保存为SVG</el-dropdown-item>
-        <el-dropdown-item command="saveTpJSON">保存为JSON文件</el-dropdown-item>
+        <el-dropdown-item command="saveToJSON">保存为JSON文件</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -56,13 +56,15 @@ export default {
     // 保存为svg
     saveToSvg() {
       const svgUrl = this.canvas.c.toSVG();
+      // encodeURIComponent() 函数
+      // 作用：可把字符串作为URI 组件进行编码。其返回值URIstring 的副本，其中的某些字符将被十六进制的转义序列进行替换。
       const fileStr = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
         svgUrl
       )}`;
       this.downFile(fileStr, "svg");
     },
     // 保存为JSON文件
-    saveTpJSON() {
+    saveToJSON() {
       const jsonUrl = this.canvas.c.toJSON();
       const fileStr = `data:text/json;charset=utf-8,${encodeURIComponent(
         JSON.stringify(jsonUrl, null, "\t")
@@ -70,10 +72,9 @@ export default {
       this.downFile(fileStr, "json");
     },
     // 下载图片
-    downFile(imgUrl, fileType) {
+    downFile(fileUrl, fileType) {
       const a = document.createElement("a");
-      a.href = imgUrl;
-      a.download = uuid() + "." + fileType;
+      a.href = fileUrl;
       a.download = uuid() + "." + fileType;
       a.click();
       a.remove();

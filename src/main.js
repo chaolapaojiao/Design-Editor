@@ -16,6 +16,7 @@ Vue.use(VueClipboard)
 
 Vue.prototype.$http = axios
 Vue.prototype.$Loading = Loading
+Vue.prototype.$backList = []
 Vue.use(ElementUI)
 new Vue({
   router,
