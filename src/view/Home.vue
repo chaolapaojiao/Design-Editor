@@ -81,6 +81,7 @@ import attribute from "@/components/attribute";
 import EventHandle from "../utils/eventHandle";
 
 import { fabric } from "fabric";
+import hotkey from "@/plugin/hotkey";
 const event = new EventHandle();
 const canvas = {};
 export default {
@@ -109,6 +110,7 @@ export default {
     this.canvas = canvas.c = new fabric.Canvas("canvas");
     this.canvas.set("backgroundColor", "#fff");
     event.init(canvas.c);
+    hotkey(canvas.c);
   },
 };
 </script>
